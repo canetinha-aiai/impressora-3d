@@ -552,6 +552,54 @@ textarea.field-input { resize: vertical; font-family: inherit; }
   font-size: 1.05rem;
 }
 
+.order-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 12px 20px;
+  margin-top: 12px;
+}
+
+.order-field { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+
+.order-field-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.order-field-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.order-total-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--card-border);
+}
+
+.order-total-row .order-qty-line {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.order-total-row .order-total-value {
+  font-family: "JetBrains Mono", monospace;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
 .order-actions {
   display: flex;
   flex-direction: column;

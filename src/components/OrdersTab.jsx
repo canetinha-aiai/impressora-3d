@@ -62,12 +62,37 @@ export default function OrdersTab() {
                   <h3>{p.name || "Produto removido"}</h3>
                   <span className={"status-pill " + o.status}>{o.status === "pago" ? "PAGO" : "PENDENTE"}</span>
                 </div>
-                <div className="order-meta">
-                  {o.customer_name} · {o.customer_phone || "sem telefone"} {p.size ? "· " + p.size : ""} ·{" "}
-                  {formatDate(o.created_at)}
+
+                <div className="order-fields">
+                  <div className="order-field">
+                    <span className="order-field-label">Cliente</span>
+                    <span className="order-field-value">{o.customer_name}</span>
+                  </div>
+                  <div className="order-field">
+                    <span className="order-field-label">Telefone</span>
+                    <span className="order-field-value">{o.customer_phone || "—"}</span>
+                  </div>
+                  {p.size && (
+                    <div className="order-field">
+                      <span className="order-field-label">Tamanho</span>
+                      <span className="order-field-value">{p.size}</span>
+                    </div>
+                  )}
+                  <div className="order-field">
+                    <span className="order-field-label">Quantidade</span>
+                    <span className="order-field-value">{o.quantity}</span>
+                  </div>
+                  <div className="order-field">
+                    <span className="order-field-label">Pedido em</span>
+                    <span className="order-field-value">{formatDate(o.created_at)}</span>
+                  </div>
                 </div>
-                <div className="order-price">
-                  {o.quantity}&times; {formatCents(unitCents)} = {formatCents(unitCents * o.quantity)}
+
+                <div className="order-total-row">
+                  <span className="order-qty-line">
+                    {o.quantity}&times; {formatCents(unitCents)}
+                  </span>
+                  <span className="order-total-value">{formatCents(unitCents * o.quantity)}</span>
                 </div>
               </div>
               <div className="order-actions">
