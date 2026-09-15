@@ -22,14 +22,15 @@ export default function ProductsTab() {
     loadProducts();
   }, []);
 
-  async function removeProduct(id, glbPath) {
+  async function removeProduct(id, glbPath, sourcePath) {
     if (!confirm("Remover esse produto do catálogo?")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
     if (error) {
       alert("Não deu pra remover: " + error.message);
       return;
     }
-    if (glbPath) await supabase.storage.from("models").remove([glbPath]);
+    const paths = [...new Set([glbPath, sourcePath].filter(Boolean))];
+    if (paths.length) await supabase.storage.from("models").remove(paths);
     loadProducts();
   }
 
@@ -61,7 +62,11 @@ export default function ProductsTab() {
                 <button className="btn btn-secondary" type="button" onClick={() => setModalProduct(p)}>
                   Editar
                 </button>
-                <button className="btn btn-secondary" type="button" onClick={() => removeProduct(p.id, p.glb_path)}>
+                <button
+                  className="btn btn-secondary"
+                  type="button"
+                  onClick={() => removeProduct(p.id, p.glb_path, p.source_path)}
+                >
                   Remover
                 </button>
               </div>

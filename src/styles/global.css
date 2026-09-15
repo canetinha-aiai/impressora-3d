@@ -426,6 +426,12 @@ textarea.field-input { resize: vertical; font-family: inherit; }
   margin-bottom: 16px;
 }
 
+.form-hint {
+  color: var(--accent-2);
+  font-size: 0.8rem;
+  margin: -10px 0 16px;
+}
+
 /* ---------- login ---------- */
 .login-shell {
   min-height: calc(100vh - 70px);
